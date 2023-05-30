@@ -46,6 +46,8 @@ def parse_args(extra_args_provider=None, defaults={},
     parser = _add_memoryopt_args(parser)
     parser = _add_activation_checkpoint_args(parser)
     parser = _add_distillation_args(parser)
+    parser.add_argument("--cpu_log_path", type=str, default="/tmp/cpu_log.txt")
+
 
     # Custom arguments.
     if extra_args_provider is not None:
