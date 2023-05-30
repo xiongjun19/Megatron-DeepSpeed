@@ -42,7 +42,7 @@ OUTPUT_ARGS="--log-interval 10 \
              --eval-interval 100 \
              --eval-iters 10 \
              --checkpoint-activations"
-ds_args='--deepspeed --deepspeed_config ${cfg_path}'
+ds_args="--deepspeed --deepspeed_config ${cfg_path}"
 
 nsys profile  -c cudaProfilerApi -f true --stats true  -o ${gpu_log} \
     python -m torch.distributed.launch ${DISTRIBUTED_ARGS} pretrain_gpt.py $GPT_ARGS $OUTPUT_ARGS --save $CHECKPOINT_PATH   --data-path $DATA_PATH ${ds_args}
