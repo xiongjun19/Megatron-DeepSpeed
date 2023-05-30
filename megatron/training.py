@@ -507,7 +507,7 @@ def setup_model_and_optimizer(model_provider_func, teacher=False,
                     train_val_test_num_samples)
             model, optimizer, args.deepspeed_dataloader, lr_scheduler = deepspeed.initialize(
                 model=model[0],
-                optimizer=optimizer,
+                # optimizer=optimizer,
                 args=args,
                 lr_scheduler=lr_scheduler,
                 training_data=train_ds,
@@ -515,9 +515,10 @@ def setup_model_and_optimizer(model_provider_func, teacher=False,
             )
             model.set_data_post_process_func(data_post_process)
         else:
+            print(f"no_pipe status: ", args.no_pipeline_parallel)
             model, optimizer, _, lr_scheduler = deepspeed.initialize(
                 model=model[0],
-                optimizer=optimizer,
+                # optimizer=optimizer,
                 args=args,
                 lr_scheduler=lr_scheduler,
                 mpu=mpu if args.no_pipeline_parallel else None
