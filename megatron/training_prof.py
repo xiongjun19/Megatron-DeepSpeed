@@ -60,7 +60,7 @@ from deepspeed.compression.compress import init_compression, redundancy_clean
 from megatron.model.transformer import  ParallelTransformerLayer
 from deepspeed.runtime.data_pipeline.data_routing.helper import convert_to_random_ltd
 
-from profiler_helper import perf_log
+from megatron.profiler_helper import perf_log
 import ctypes
 
 
