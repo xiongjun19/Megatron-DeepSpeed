@@ -1033,12 +1033,16 @@ def train(forward_step_func, model, optimizer, lr_scheduler,
         if args.curriculum_learning_legacy and not args.no_pipeline_parallel:
             args.curriculum_seqlen = args.curriculum_scheduler.update_difficulty( \
                     args.iteration + 1)
+        ss = time.time()
         loss_dict, skipped_iter, grad_norm, num_zeros_in_grad = \
             train_step(forward_step_func,
                        train_data_iterator,
                        model,
                        optimizer,
                        lr_scheduler)
+        cost_time = time.time() - ss
+        print_rank_0(f"training consum time is: {cost_time}")
+
         iteration += 1
         args.iteration = iteration
         new_samples = mpu.get_data_parallel_world_size() * \
