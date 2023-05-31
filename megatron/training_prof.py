@@ -1073,7 +1073,7 @@ def train(forward_step_func, model, optimizer, lr_scheduler,
     while iteration < args.train_iters and (args.train_tokens is None or \
         args.consumed_train_tokens < args.train_tokens):
         i = i+1
-        if i > 10:
+        if i > 5:
             break
         update_num_microbatches(args.consumed_train_samples)
         if args.deepspeed:
@@ -1100,7 +1100,7 @@ def train(forward_step_func, model, optimizer, lr_scheduler,
              optimizer,
              lr_scheduler,
              args, 
-             record_steps)
+             3)
 
     return iteration
 
