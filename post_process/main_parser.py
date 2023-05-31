@@ -103,6 +103,7 @@ def _extract_key(key):
     # num_gpu = _arr[1]
     policy = _arr[1] 
     bs = _arr[2]
+    num_gpu = 8
     return param, bs, policy, num_gpu
 
 def _is_keep(key):
